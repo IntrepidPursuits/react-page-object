@@ -1,15 +1,13 @@
 {
   "name": "react-page-object",
-  "version": "1.0.5",
-  "engines": {
-    "node": "6.9.2"
-  },
+  "version": "1.0.6",
   "description": "Declarative testing for React",
   "main": "dist/index.js",
   "scripts": {
     "test": "npm run karma -- --single-run",
     "karma": "NODE_ENV=test node_modules/.bin/karma start",
-    "release": "node_modules/.bin/webpack && npm publish"
+    "webpack": "node_modules/.bin/webpack",
+    "release": "npm run webpack && npm publish"
   },
   "repository": {
     "type": "git",
