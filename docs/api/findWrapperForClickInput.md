@@ -12,12 +12,12 @@ Find a clickable input
 
 [`ReactWrapper`][react-wrapper] for an `input` React element whose:
   1. `id` or `value` prop value equals `propValue`
-  2. `type` prop equals `'submit'`
+  2. `type` prop value equals `'submit'`
 
 If `options.propToCheck` is specified, then the method returns a
 [`ReactWrapper`][react-wrapper] for an `input` React element whose:
   1. value for the prop specified by `options.propToCheck` equals `propValue`
-  2. `type` prop equals `'submit'`
+  2. `type` prop value equals `'submit'`
 
 #### Related Methods
 
