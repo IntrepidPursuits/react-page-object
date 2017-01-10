@@ -82,6 +82,10 @@ describe('fillInSpec', () => {
         page.fillIn('secondPropValue', 'eventTargetValue')
         expect(onBlur).toHaveBeenCalled()
       })
+
+      it('should return the page object itself', () => {
+        expect(page.fillIn('propValue', 'eventTargetValue')).toBe(page)
+      })
     })
 
     describe('input type text whose id prop value matches the propValue', () => {
@@ -172,7 +176,7 @@ describe('fillInSpec', () => {
       it('should raise an error describing that no matching React elements were found', () => {
         expect(() => page.fillIn('propValue', 'eventTargetValue')).toThrowError(
           Error,
-          'page.fillIn(\'propValue\', \'eventTargetValue\') failed because no matching React elements were found by page.findWrapperForFillIn(\'propValue\')'
+          '.fillIn(\'propValue\', \'eventTargetValue\') failed because no matching React elements were found by .findWrapperForFillIn(\'propValue\')'
         )
       })
     })
@@ -190,7 +194,7 @@ describe('fillInSpec', () => {
       it('should raise an error describing that two matching React elements were found', () => {
         expect(() => page.fillIn('propValue', 'eventTargetValue')).toThrowError(
           Error,
-          'page.fillIn(\'propValue\', \'eventTargetValue\') failed because 2 matching React elements were found by page.findWrapperForFillIn(\'propValue\')'
+          '.fillIn(\'propValue\', \'eventTargetValue\') failed because 2 matching React elements were found by .findWrapperForFillIn(\'propValue\')'
         )
       })
     })

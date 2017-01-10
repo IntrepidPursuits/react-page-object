@@ -69,6 +69,10 @@ describe('clickInputSpec', () => {
         page.clickInput('secondPropValue')
         expect(onBlur).toHaveBeenCalled()
       })
+
+      it('should return the page object itself', () => {
+        expect(page.clickInput('propValue')).toBe(page)
+      })
     })
 
     describe('input type submit whose value prop value matches the propValue', () => {
@@ -96,7 +100,7 @@ describe('clickInputSpec', () => {
       it('should raise an error describing that no matching React elements were found', () => {
         expect(() => page.clickInput('propValue')).toThrowError(
           Error,
-          'page.clickInput(\'propValue\') failed because no matching React elements were found by page.findWrapperForClickInput(\'propValue\')'
+          '.clickInput(\'propValue\') failed because no matching React elements were found by .findWrapperForClickInput(\'propValue\')'
         )
       })
     })
@@ -114,7 +118,7 @@ describe('clickInputSpec', () => {
       it('should raise an error describing that two matching React elements were found', () => {
         expect(() => page.clickInput('propValue')).toThrowError(
           Error,
-          'page.clickInput(\'propValue\') failed because 2 matching React elements were found by page.findWrapperForClickInput(\'propValue\')'
+          '.clickInput(\'propValue\') failed because 2 matching React elements were found by .findWrapperForClickInput(\'propValue\')'
         )
       })
     })

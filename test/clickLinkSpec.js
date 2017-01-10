@@ -80,6 +80,10 @@ describe('clickLinkSpec', () => {
         page.clickLink('secondPropValue')
         expect(onBlur).toHaveBeenCalled()
       })
+
+      it('should return the page object itself', () => {
+        expect(page.clickLink('propValue')).toBe(page)
+      })
     })
 
     describe('link whose children prop value matches the propValue', () => {
@@ -141,7 +145,7 @@ describe('clickLinkSpec', () => {
       it('should raise an error describing that no matching React elements were found', () => {
         expect(() => page.clickLink('propValue')).toThrowError(
           Error,
-          'page.clickLink(\'propValue\') failed because no matching React elements were found by page.findWrapperForClickLink(\'propValue\')'
+          '.clickLink(\'propValue\') failed because no matching React elements were found by .findWrapperForClickLink(\'propValue\')'
         )
       })
     })
@@ -159,7 +163,7 @@ describe('clickLinkSpec', () => {
       it('should raise an error describing that two matching React elements were found', () => {
         expect(() => page.clickLink('propValue')).toThrowError(
           Error,
-          'page.clickLink(\'propValue\') failed because 2 matching React elements were found by page.findWrapperForClickLink(\'propValue\')'
+          '.clickLink(\'propValue\') failed because 2 matching React elements were found by .findWrapperForClickLink(\'propValue\')'
         )
       })
     })

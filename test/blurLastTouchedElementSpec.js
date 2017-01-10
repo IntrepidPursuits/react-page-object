@@ -30,6 +30,10 @@ describe('blurLastTouchedElementSpec', () => {
       page.blurLastTouchedElement()
       expect(page.previouslyFocusedWrapper).toEqual(null)
     })
+
+    it('should return the page object itself', () => {
+      expect(page.blurLastTouchedElement()).toBe(page)
+    })
   })
 
   describe('there is no previously focused wrapper', () => {
