@@ -75,6 +75,10 @@ describe('uncheckSpec', () => {
         page.uncheck('secondPropValue')
         expect(onBlur).toHaveBeenCalled()
       })
+
+      it('should return the page object itself', () => {
+        expect(page.uncheck('propValue')).toBe(page)
+      })
     })
 
     describe('input type checkbox whose name prop value matches the propValue', () => {
@@ -101,7 +105,7 @@ describe('uncheckSpec', () => {
       it('should raise an error describing that no matching React elements were found', () => {
         expect(() => page.uncheck('propValue')).toThrowError(
           Error,
-          'page.check(\'propValue\') failed because no matching React elements were found by page.findWrapperForCheck(\'propValue\')'
+          '.check(\'propValue\') failed because no matching React elements were found by .findWrapperForCheck(\'propValue\')'
         )
       })
     })
@@ -119,7 +123,7 @@ describe('uncheckSpec', () => {
       it('should raise an error describing that two matching React elements were found', () => {
         expect(() => page.uncheck('propValue')).toThrowError(
           Error,
-          'page.check(\'propValue\') failed because 2 matching React elements were found by page.findWrapperForCheck(\'propValue\')'
+          '.check(\'propValue\') failed because 2 matching React elements were found by .findWrapperForCheck(\'propValue\')'
         )
       })
     })

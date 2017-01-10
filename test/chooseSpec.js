@@ -75,6 +75,10 @@ describe('chooseSpec', () => {
         page.choose('secondPropValue')
         expect(onBlur).toHaveBeenCalled()
       })
+
+      it('should return the page object itself', () => {
+        expect(page.choose('propValue')).toBe(page)
+      })
     })
 
     describe('input type radio whose name prop value matches the propValue', () => {
@@ -101,7 +105,7 @@ describe('chooseSpec', () => {
       it('should raise an error describing that no matching React elements were found', () => {
         expect(() => page.choose('propValue')).toThrowError(
           Error,
-          'page.choose(\'propValue\') failed because no matching React elements were found by page.findWrapperForChoose(\'propValue\')'
+          '.choose(\'propValue\') failed because no matching React elements were found by .findWrapperForChoose(\'propValue\')'
         )
       })
     })
@@ -119,7 +123,7 @@ describe('chooseSpec', () => {
       it('should raise an error describing that two matching React elements were found', () => {
         expect(() => page.choose('propValue')).toThrowError(
           Error,
-          'page.choose(\'propValue\') failed because 2 matching React elements were found by page.findWrapperForChoose(\'propValue\')'
+          '.choose(\'propValue\') failed because 2 matching React elements were found by .findWrapperForChoose(\'propValue\')'
         )
       })
     })

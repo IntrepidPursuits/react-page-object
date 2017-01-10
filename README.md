@@ -15,147 +15,69 @@ Unmounts the `reactElement` used to generate the `Page` object from the DOM. Nav
 This method should be invoked on a `Page` object at the end of every test.
 
 ### Find Wrapper Methods
-#### `.findWrapperForCheck(propValue[, options]) => ReactWrapper`
+#### [`.findWrapperForCheck(propValue[, options]) => ReactWrapper`](docs/api/findWrapperForCheck.md)
+Find a checkbox
 
-Returns a [`ReactWrapper`][react-wrapper] for an `input` React element whose:
-  1. `id` or `name` props equal `propValue`
-  2. `type` prop equals `'checkbox'`
+#### [`.findWrapperForChoose(propValue[, options]) => ReactWrapper`](docs/api/findWrapperForChoose.md)
+Find a radio button
 
-Optionally takes an `options` object as a second argument.
+#### [`.findWrapperForClickButton(propValue[, options]) => ReactWrapper`](docs/api/findWrapperForClickButton.md)
+Find a button
 
-If `options.propToCheck` is specified, then the method returns a
-[`ReactWrapper`][react-wrapper] for an `input` React element whose:
-  1. prop specified by `options.propToCheck` equals `propValue`
-  2. `type` prop equals `'checkbox'`
+#### [`.findWrapperForClickInput(propValue[, options]) => ReactWrapper`](docs/api/findWrapperForClickInput.md)
+Find a clickable input
 
-#### `.findWrapperForChoose(propValue[, options]) => ReactWrapper`
+#### [`.findWrapperForClickLink(propValue[, options]) => ReactWrapper`](docs/api/findWrapperForClickLink.md)
+Find a link
 
-Returns a [`ReactWrapper`][react-wrapper] for an `input` React element whose:
-  1. `id` or `name` props equal `propValue`
-  2. `type` prop equals `'radio'`
+#### [`.findWrapperForFillIn(propValue[, options]) => ReactWrapper`](docs/api/findWrapperForFillIn.md)
+Find a text input
 
-Optionally takes an `options` object as a second argument.
+#### [`.findWrapperForFillInTextarea(propValue[, options]) => ReactWrapper`](docs/api/findWrapperForFillInTextarea.md)
+Find a textarea
 
-If `options.propToCheck` is specified, then the method returns a
-[`ReactWrapper`][react-wrapper] for an `input` React element whose:
-  1. prop specified by `options.propToCheck` equals `propValue`
-  2. `type` prop equals `'radio'`
-
-#### `.findWrapperForClickButton(propValue[, options]) => ReactWrapper`
-
-Returns a [`ReactWrapper`][react-wrapper] for a `button` React element whose:
-  1. `id` or `children` props equal `propValue`
-
-Optionally takes an `options` object as a second argument.
-
-If `options.propToCheck` is specified, then the method returns a
-[`ReactWrapper`][react-wrapper] for a `button` React element whose:
-  1. prop specified by `options.propToCheck` equals `propValue`
-
-#### `.findWrapperForClickInput(propValue[, options]) => ReactWrapper`
-
-Returns a [`ReactWrapper`][react-wrapper] for an `input` React element whose:
-  1. `id` or `value` props equal `propValue`
-  2. `type` prop equals `'submit'`
-
-Optionally takes an `options` object as a second argument.
-
-If `options.propToCheck` is specified, then the method returns a
-[`ReactWrapper`][react-wrapper] for an `input` React element whose:
-  1. prop specified by `options.propToCheck` equals `propValue`
-  2. `type` prop equals `'submit'`
-
-#### `.findWrapperForClickLink(propValue[, options]) => ReactWrapper`
-
-Returns a [`ReactWrapper`][react-wrapper] for an `a` React element whose:
-  1. `id`, `children`, or `href` props equal `propValue`
-
-Optionally takes an `options` object as a second argument.
-
-If `options.propToCheck` is specified, then the method returns a
-[`ReactWrapper`][react-wrapper] for an `a` React element whose:
-  1. prop specified by `options.propToCheck` equals `propValue`
-
-#### `.findWrapperForFillIn(propValue[, options]) => ReactWrapper`
-
-Returns a [`ReactWrapper`][react-wrapper] for an `input` React element whose:
-  1. `id`, `name` or `placeholder` props equal `propValue`
-  2. `type` prop is `undefined`, `'email'`, `'password'`, or `'text'`
-
-Optionally takes an `options` object as a second argument.
-
-If `options.propToCheck` is specified, then the method returns a
-[`ReactWrapper`][react-wrapper] for an `input` React element whose:
-  1. prop specified by `options.propToCheck` equals `propValue`
-  2. `type` prop is `undefined`, `'email'`, `'password'`, or `'text'`
-
-#### `.findWrapperForFillInTextarea(propValue[, options]) => ReactWrapper`
-
-Returns a [`ReactWrapper`][react-wrapper] for a `textarea` React element whose:
-  1. `id`, `name` or `placeholder` props equal `propValue`
-
-Optionally takes an `options` object as a second argument.
-
-If `options.propToCheck` is specified, then the method returns a
-[`ReactWrapper`][react-wrapper] for a `textarea` React element whose:
-  1. prop specified by `options.propToCheck` equals `propValue`
-
-#### `.findWrapperForSelect(propValue, childrenPropValueForOption, [, options]) => ReactWrapper`
-
-Returns a [`ReactWrapper`][react-wrapper] for a `select` React element whose:
-  1. `id`, `name` props equal `propValue`
-  2. `children` includes only one `option` React element whose `children` prop equals `childrenPropValueForOption`
-
-Optionally takes an `options` object as a second argument.
-
-If `options.propToCheck` is specified, then the method returns a
-[`ReactWrapper`][react-wrapper] for a `select` React element whose:
-  1. prop specified by `options.propToCheck` equals `propValue`
-  2. `children` includes only one `option` React element whose `children` prop equals `childrenPropValueForOption`
-
-If `options.showDebuggingInfo` is specified with `true`, then messages
-detailing the process of finding a `select` React element will be outputted to
-the console.
+#### [`.findWrapperForSelect(propValue, childrenPropValueForOption, [, options]) => ReactWrapper`](docs/api/select.md)
+Find a select box
 
 ### Interaction Methods
-#### `.blurLastTouchedElement()`
+#### `.blurLastTouchedElement() => Page`
 Use this method to blur the last element which was focused.
 
-#### `.check(propValue[, options])`
+#### `.check(propValue[, options]) => Page`
 Use this method to check a checkbox. The arguments of this method will be used
 by the `findWrapperForCheck` method to find a checkbox.
 
-#### `.choose(propValue[, options])`
+#### `.choose(propValue[, options]) => Page`
 Use this method to select a radio button. The arguments of this method will be used
 by the `findWrapperForChoose` method to find a radio button.
 
-#### `.clickButton(propValue[, options])`
+#### `.clickButton(propValue[, options]) => Page`
 Use this method to click on a button element. The arguments of this method will be
 used by the `findWrapperForButton` method to find a button.
 
-#### `.clickInput(propValue[, options])`
+#### `.clickInput(propValue[, options]) => Page`
 Use this method to click on a clickable input element. The arguments of this method will be
 used by the `findWrapperForClickInput` method to find an input.
 
-#### `.clickLink(propValue[, options])`
+#### `.clickLink(propValue[, options]) => Page`
 Use this method to click on a link. The arguments of this method will be
 used by the `findWrapperForClickLink` method to find a link.
 
-#### `.fillIn(propValue, eventTargetValue, [, options])`
+#### `.fillIn(propValue, eventTargetValue, [, options]) => Page`
 Use this method to fill in a text input. The `propValue` and `options` arguments of this method will be
 used by the `findWrapperForFillIn` method to find a text input. Any `onChange` event handlers triggered will
 receive an `event` object whose `target.value` will equal `eventTargetValue`.
 
-#### `.fillInTextarea(propValue, eventTargetValue, [, options])`
+#### `.fillInTextarea(propValue, eventTargetValue, [, options]) => Page`
 Use this method to fill in a textarea. The `propValue` and `options` arguments of this method will be
 used by the `findWrapperForFillInTextarea` method to find a textarea. Any `onChange` event handlers triggered will
 receive an `event` object whose `target.value` will equal `eventTargetValue`.
 
-#### `.uncheck(propValue[, options])`
+#### `.uncheck(propValue[, options]) => Page`
 Use this method to uncheck a checkbox. The arguments of this method will be used
 by the `findWrapperForCheck` method to find a checkbox.
 
-#### `.select(propValue, childrenPropValueForOption, [, options])`
+#### `.select(propValue, childrenPropValueForOption, [, options]) => Page`
 Use this method to select an option from a select dropdown. The arguments of this method will be used
 by the `findWrapperForSelect` method to find the select dropdown.
 
@@ -189,5 +111,3 @@ Optionally takes an `options` object as a second argument.
 Use `options.delay` to specify the number of milliseconds to wait for each interval before invoking `callback`.
 
 Use `options.numberOfTries` to specify the number of times that the `callback` can be invoked before the returned promise is rejected.
-
-[react-wrapper]: https://github.com/airbnb/enzyme/blob/master/docs/api/mount.md#reactwrapper-api

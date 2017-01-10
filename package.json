@@ -1,7 +1,7 @@
 {
   "name": "react-page-object",
-  "version": "1.0.6",
-  "description": "Declarative testing for React",
+  "version": "1.0.7",
+  "description": "Declarative integration testing for React",
   "main": "dist/index.js",
   "scripts": {
     "test": "npm run karma -- --single-run",

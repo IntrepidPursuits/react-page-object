@@ -70,6 +70,10 @@ describe('selectSpec', () => {
         page.select('secondPropValue', 'childrenPropValueForOption')
         expect(onBlur).toHaveBeenCalled()
       })
+
+      it('should return the page object itself', () => {
+        expect(page.select('propValue', 'childrenPropValueForOption')).toBe(page)
+      })
     })
 
     describe('select whose name prop value matches the propValue', () => {
@@ -96,7 +100,7 @@ describe('selectSpec', () => {
       it('should raise an error describing that no matching React elements were found', () => {
         expect(() => page.select('propValue', 'childrenPropValueForOption')).toThrowError(
           Error,
-          'page.select(\'propValue\', \'childrenPropValueForOption\') failed because no matching React elements were found by page.findWrapperForSelect(\'propValue\', \'childrenPropValueForOption\')'
+          '.select(\'propValue\', \'childrenPropValueForOption\') failed because no matching React elements were found by .findWrapperForSelect(\'propValue\', \'childrenPropValueForOption\')'
         )
       })
     })
@@ -118,7 +122,7 @@ describe('selectSpec', () => {
       it('should raise an error describing that two matching React elements were found', () => {
         expect(() => page.select('propValue', 'childrenPropValueForOption')).toThrowError(
           Error,
-          'page.select(\'propValue\', \'childrenPropValueForOption\') failed because 2 matching React elements were found by page.findWrapperForSelect(\'propValue\', \'childrenPropValueForOption\')'
+          '.select(\'propValue\', \'childrenPropValueForOption\') failed because 2 matching React elements were found by .findWrapperForSelect(\'propValue\', \'childrenPropValueForOption\')'
         )
       })
     })

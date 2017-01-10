@@ -67,6 +67,10 @@ describe('fillInTextareaSpec', () => {
         page.fillInTextarea('secondPropValue', 'eventTargetValue')
         expect(onBlur).toHaveBeenCalled()
       })
+
+      it('should return the page object itself', () => {
+        expect(page.fillInTextarea('propValue', 'eventTargetValue')).toBe(page)
+      })
     })
 
     describe('textarea whose name prop value matches the propValue', () => {
@@ -109,7 +113,7 @@ describe('fillInTextareaSpec', () => {
       it('should raise an error describing that no matching React elements were found', () => {
         expect(() => page.fillInTextarea('propValue', 'eventTargetValue')).toThrowError(
           Error,
-          'page.fillInTextarea(\'propValue\', \'eventTargetValue\') failed because no matching React elements were found by page.findWrapperForFillInTextarea(\'propValue\')'
+          '.fillInTextarea(\'propValue\', \'eventTargetValue\') failed because no matching React elements were found by .findWrapperForFillInTextarea(\'propValue\')'
         )
       })
     })
@@ -127,7 +131,7 @@ describe('fillInTextareaSpec', () => {
       it('should raise an error describing that two matching React elements were found', () => {
         expect(() => page.fillInTextarea('propValue', 'eventTargetValue')).toThrowError(
           Error,
-          'page.fillInTextarea(\'propValue\', \'eventTargetValue\') failed because 2 matching React elements were found by page.findWrapperForFillInTextarea(\'propValue\')'
+          '.fillInTextarea(\'propValue\', \'eventTargetValue\') failed because 2 matching React elements were found by .findWrapperForFillInTextarea(\'propValue\')'
         )
       })
     })

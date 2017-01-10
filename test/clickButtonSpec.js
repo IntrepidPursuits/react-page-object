@@ -69,6 +69,10 @@ describe('clickButtonSpec', () => {
         page.clickButton('secondPropValue')
         expect(onBlur).toHaveBeenCalled()
       })
+
+      it('should return the page object itself', () => {
+        expect(page.clickButton('propValue')).toBe(page)
+      })
     })
 
     describe('button whose children prop value matches the propValue', () => {
@@ -96,7 +100,7 @@ describe('clickButtonSpec', () => {
       it('should raise an error describing that no matching React elements were found', () => {
         expect(() => page.clickButton('propValue')).toThrowError(
           Error,
-          'page.clickButton(\'propValue\') failed because no matching React elements were found by page.findWrapperForClickButton(\'propValue\')'
+          '.clickButton(\'propValue\') failed because no matching React elements were found by .findWrapperForClickButton(\'propValue\')'
         )
       })
     })
@@ -114,7 +118,7 @@ describe('clickButtonSpec', () => {
       it('should raise an error describing that two matching React elements were found', () => {
         expect(() => page.clickButton('propValue')).toThrowError(
           Error,
-          'page.clickButton(\'propValue\') failed because 2 matching React elements were found by page.findWrapperForClickButton(\'propValue\')'
+          '.clickButton(\'propValue\') failed because 2 matching React elements were found by .findWrapperForClickButton(\'propValue\')'
         )
       })
     })
