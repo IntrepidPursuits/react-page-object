@@ -5,7 +5,10 @@ Find a select box
 #### Arguments
 
 1. `propValue` (`String`): Value is compared with the values of the checked props to assert a match.
-2. `options` (`Object`): Optional.
+2. `childrenPropValueForOption` (`String`): Value is compared with the
+   `children` prop value of children `option` React elements for potentially
+   matching `select` React element.
+3. `options` (`Object`): Optional.
   * `propToCheck` (`String`): Name of prop to check against instead of the default checked props.
   * `showDebuggingInfo` (`Boolean`): If `true`, then messages detailing the process of finding a
     `select` React element will be outputted to the console.
