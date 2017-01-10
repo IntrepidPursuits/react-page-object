@@ -12,12 +12,12 @@ Find a checkbox
 
 [`ReactWrapper`][react-wrapper] for an `input` React element whose:
   1. `id` or `name` prop value equals `propValue`
-  2. `type` prop equals `'checkbox'`
+  2. `type` prop value equals `'checkbox'`
 
 If `options.propToCheck` is specified, then the method returns a
 [`ReactWrapper`][react-wrapper] for an `input` React element whose:
   1. value for the prop specified by `options.propToCheck` equals `propValue`
-  2. `type` prop equals `'checkbox'`
+  2. `type` prop value equals `'checkbox'`
 
 #### Related Methods
 

@@ -12,12 +12,12 @@ Find a text input
 
 [`ReactWrapper`][react-wrapper] for an `input` React element whose:
   1. `id`, `name` or `placeholder` prop value equals `propValue`
-  2. `type` prop is `undefined`, `'email'`, `'password'`, or `'text'`
+  2. `type` prop value is `undefined`, `'email'`, `'password'`, or `'text'`
 
 If `options.propToCheck` is specified, then the method returns a
 [`ReactWrapper`][react-wrapper] for an `input` React element whose:
   1. value for the prop specified by `options.propToCheck` equals `propValue`
-  2. `type` prop is `undefined`, `'email'`, `'password'`, or `'text'`
+  2. `type` prop value is `undefined`, `'email'`, `'password'`, or `'text'`
 
 #### Related Methods
 

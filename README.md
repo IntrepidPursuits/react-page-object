@@ -36,7 +36,7 @@ Find a text input
 #### [`.findWrapperForFillInTextarea(propValue[, options]) => ReactWrapper`](docs/api/findWrapperForFillInTextarea.md)
 Find a textarea
 
-#### [`.findWrapperForSelect(propValue, childrenPropValueForOption, [, options]) => ReactWrapper`](docs/api/select.md)
+#### [`.findWrapperForSelect(propValue, childrenPropValueForOption, [, options]) => ReactWrapper`](docs/api/findWrapperForSelect.md)
 Find a select box
 
 ### Interaction Methods
