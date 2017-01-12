@@ -40,8 +40,8 @@ Find a textarea
 Find a select box
 
 ### Interaction Methods
-#### `.blurLastTouchedElement() => Page`
-Use this method to blur the last element which was focused.
+#### `.blurLastFocusedElement() => Page`
+Blur the last element which was focused.
 
 #### `.check(propValue[, options]) => Page`
 Use this method to check a checkbox. The arguments of this method will be used
