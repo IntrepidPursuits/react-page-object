@@ -1,6 +1,6 @@
 {
   "name": "react-page-object",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "Declarative integration testing for React",
   "main": "dist/index.js",
   "scripts": {
