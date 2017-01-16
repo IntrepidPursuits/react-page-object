@@ -38,6 +38,8 @@ be simulated on the [`ReactWrapper`][react-wrapper]'s React element:
    simulated `change` event, `event.target.value` will equal
    `eventTargetValue`.
 
+If no [`ReactWrapper`][react-wrapper] is found, then an error is thrown.
+
 #### Related Methods
 
 - [`.findWrapperForFillIn(propValue, eventTargetValue[, options]) => ReactWrapper`][find-wrapper-method]

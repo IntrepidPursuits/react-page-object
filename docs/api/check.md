@@ -32,6 +32,8 @@ be simulated on the [`ReactWrapper`][react-wrapper]'s React element:
    it is already in focus.
 3. `change` event on the [`ReactWrapper`][react-wrapper]'s React element.
 
+If no [`ReactWrapper`][react-wrapper] is found, then an error is thrown.
+
 #### Related Methods
 
 - [`.findWrapperForCheck(propValue[, options]) => ReactWrapper`][find-wrapper-method]

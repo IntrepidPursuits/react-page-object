@@ -39,6 +39,8 @@ be simulated on the [`ReactWrapper`][react-wrapper]'s React element:
    by this simulated `change` event, `event.target.value` will equal the value
    of the `value` prop for the matching option.
 
+If no [`ReactWrapper`][react-wrapper] is found, then an error is thrown.
+
 #### Related Methods
 
 - [`.findWrapperForSelect(propValue, childrenPropValueForOption[, options]) => ReactWrapper`][find-wrapper-method]
