@@ -2,6 +2,8 @@
 
 Find a clickable input
 
+**Default Checked Props:** `id` and `value`
+
 #### Arguments
 
 1. `propValue` (`String`): Value is compared with the values of the checked props to assert a match.

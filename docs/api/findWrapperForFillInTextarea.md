@@ -2,6 +2,8 @@
 
 Find a textarea
 
+**Default Checked Props:** `id`, `name`, and `placeholder`
+
 #### Arguments
 
 1. `propValue` (`String`): Value is compared with the values of the checked props to assert a match.
@@ -19,6 +21,6 @@ If `options.propToCheck` is specified, then the method returns a
 
 #### Related Methods
 
-- [`.fillInTextarea(propValue[, options]) => ReactWrapper`](fillInTextarea.md)
+- [`.fillInTextarea(propValue, eventTargetValue[, options]) => ReactWrapper`](fillInTextarea.md)
 
 [react-wrapper]: https://github.com/airbnb/enzyme/blob/master/docs/api/mount.md#reactwrapper-api

@@ -40,46 +40,35 @@ Find a textarea
 Find a select box
 
 ### Interaction Methods
-#### `.blurLastFocusedElement() => Page`
-Blur the last element which was focused.
+#### [`.blurFocusedElement() => Page`](docs/api/blurFocusedElement.md)
+Blur the currently focused element.
 
-#### `.check(propValue[, options]) => Page`
-Use this method to check a checkbox. The arguments of this method will be used
-by the `findWrapperForCheck` method to find a checkbox.
+#### [`.check(propValue[, options]) => Page`](docs/api/check.md)
+Check a checkbox
 
-#### `.choose(propValue[, options]) => Page`
-Use this method to select a radio button. The arguments of this method will be used
-by the `findWrapperForChoose` method to find a radio button.
+#### [`.choose(propValue[, options]) => Page`](docs/api/choose.md)
+Choose a radio button
 
-#### `.clickButton(propValue[, options]) => Page`
-Use this method to click on a button element. The arguments of this method will be
-used by the `findWrapperForButton` method to find a button.
+#### [`.clickButton(propValue[, options]) => Page`](docs/api/clickButton.md)
+Click a button
 
-#### `.clickInput(propValue[, options]) => Page`
-Use this method to click on a clickable input element. The arguments of this method will be
-used by the `findWrapperForClickInput` method to find an input.
+#### [`.clickInput(propValue[, options]) => Page`](docs/api/clickInput.md)
+Click a clickable input
 
-#### `.clickLink(propValue[, options]) => Page`
-Use this method to click on a link. The arguments of this method will be
-used by the `findWrapperForClickLink` method to find a link.
+#### [`.clickLink(propValue[, options]) => Page`](docs/api/clickLink.md)
+Click a link
 
-#### `.fillIn(propValue, eventTargetValue, [, options]) => Page`
-Use this method to fill in a text input. The `propValue` and `options` arguments of this method will be
-used by the `findWrapperForFillIn` method to find a text input. Any `onChange` event handlers triggered will
-receive an `event` object whose `target.value` will equal `eventTargetValue`.
+#### [`.fillIn(propValue, eventTargetValue[, options]) => Page`](docs/api/fillIn.md)
+Fill in a text input
 
-#### `.fillInTextarea(propValue, eventTargetValue, [, options]) => Page`
-Use this method to fill in a textarea. The `propValue` and `options` arguments of this method will be
-used by the `findWrapperForFillInTextarea` method to find a textarea. Any `onChange` event handlers triggered will
-receive an `event` object whose `target.value` will equal `eventTargetValue`.
+#### [`.fillInTextarea(propValue, eventTargetValue[, options]) => Page`](docs/api/fillInTextarea.md)
+Fill in a textarea
 
-#### `.uncheck(propValue[, options]) => Page`
-Use this method to uncheck a checkbox. The arguments of this method will be used
-by the `findWrapperForCheck` method to find a checkbox.
+#### [`.select(propValue, childrenPropValueForOption[, options]) => Page`](docs/api/select.md)
+Select an option from a select box
 
-#### `.select(propValue, childrenPropValueForOption, [, options]) => Page`
-Use this method to select an option from a select dropdown. The arguments of this method will be used
-by the `findWrapperForSelect` method to find the select dropdown.
+#### [`.uncheck(propValue[, options]) => Page`](docs/api/uncheck.md)
+Uncheck a checkbox
 
 ### Utility Methods
 #### `.content() => String`
