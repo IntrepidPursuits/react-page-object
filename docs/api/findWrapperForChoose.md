@@ -2,6 +2,8 @@
 
 Find a radio button
 
+**Default Checked Props:** `id` and `name`
+
 #### Arguments
 
 1. `propValue` (`String`): Value is compared with the values of the checked props to assert a match.

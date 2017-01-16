@@ -1,7 +1,7 @@
 import React from 'react'
 import Page from 'react-page-object'
 
-describe('blurLastFocusedElementSpec', () => {
+describe('blurFocusedElementSpec', () => {
   let page
 
   beforeEach(() => {
@@ -17,28 +17,28 @@ describe('blurLastFocusedElementSpec', () => {
 
     beforeEach(() => {
       fakeWrapper = { simulate: () => {} }
-      page.previouslyFocusedWrapper = fakeWrapper
+      page.focusedWrapper = fakeWrapper
     })
 
     it('should simulate a \'blur\' event on the previously focused wrapper', () => {
       window.spyOn(fakeWrapper, 'simulate')
-      page.blurLastFocusedElement()
+      page.blurFocusedElement()
       expect(fakeWrapper.simulate).toHaveBeenCalledWith('blur')
     })
 
-    it('should set previouslyFocusedWrapper to null', () => {
-      page.blurLastFocusedElement()
-      expect(page.previouslyFocusedWrapper).toEqual(null)
+    it('should set focusedWrapper to null', () => {
+      page.blurFocusedElement()
+      expect(page.focusedWrapper).toEqual(null)
     })
 
     it('should return the page object itself', () => {
-      expect(page.blurLastFocusedElement()).toBe(page)
+      expect(page.blurFocusedElement()).toBe(page)
     })
   })
 
   describe('there is no previously focused wrapper', () => {
     it('should not throw an error if method is invoked', () => {
-      expect(() => page.blurLastFocusedElement()).not.toThrow()
+      expect(() => page.blurFocusedElement()).not.toThrow()
     })
   })
 })
