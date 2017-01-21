@@ -1,5 +1,84 @@
-# react-page-object
-Declarative testing for React
+# React Page Object
+Declarative integration testing for React. With this library, you can now write the following integration tests:
+
+```jsx
+import React, { Component } from 'react'
+import Page from 'react-page-object'
+
+class Counter extends Component {
+  state = { count: 0 }
+
+  addOne = () => this.setState({ count: this.state.count + 1 })
+  addOneAsync = () => setTimeout(this.addOne, 100)
+
+  render() {
+    return (
+      <div>
+        <h1>{this.state.count}</h1>}
+        <button onClick={this.addOne}>Add one</button>
+        <button onClick={this.addOneAsync}>Add one async</button>
+      </div>
+    )
+  }
+}
+
+describe('Counter component', () => {
+  let page
+
+  beforeEach(() => {
+    page = new Page(<Counter />)
+  })
+
+  afterEach(() => {
+    page.destroy()
+  })
+
+  it('sets the initial count to 0', () => {
+    expect(page.content()).toMatch(/0/)
+  })
+
+  it('add one to the count when the \'Add one\' button is clicked', () => {
+    page.clickButton('Add one')
+    expect(page.content()).toMatch(/1/)
+  })
+
+  it('add one to the count after a delay when the \'Add one async\' button is clicked', () => {
+    page.clickButton('Add one async')
+    expect(page.content()).toMatch(/0/)
+
+    return page
+      .waitUntil(() => !page.contentMatches(/0/))
+      .then(() => {
+        expect(page.content()).toMatch(/1/)
+      })
+  })
+})
+```
+
+This library can be used with any test runner or assertion library that is compatible with [`Enzyme`](https://github.com/airbnb/enzyme).
+
+## Installation
+
+```
+$ npm install --save-dev react-page-object
+```
+
+`enzyme` is a peer dependency of `react-page-object`, so you will need to
+install if you have not done so already. Additionally, `react-dom` and
+`react-addons-test-utils` are peer dependencies of `enzyme`, so install those
+as well if you are missing them.
+
+```
+$ npm install --save-dev enzyme
+$ npm install --save-dev react-dom
+$ npm install --save-dev react-addons-test-utils
+```
+
+If you are new to testing in React, check out the following guides to get you up and running:
+
+* [Set up with Jest in Create React App](docs/faq/installation-jest.md)
+* [Set up Karma with Mocha and Chai in Create React App](docs/faq/installation-karma-mocha-chai.md)
+* [Set up Karma with Jasmine in Create React App](docs/faq/installation-karma-jasmine.md)
 
 ## API
 ### Set Up Methods
