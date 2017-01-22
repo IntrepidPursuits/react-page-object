@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import Page from 'react-page-object'
 
-describe('waitUntilSpec', () => {
+fdescribe('waitUntilSpec', () => {
   let page
   class TestComponent extends Component {
     constructor() {
@@ -42,10 +42,18 @@ describe('waitUntilSpec', () => {
       .then(done, error => done.fail(error.message))
   })
 
-  it('should invoke the callback at most 3 times by default', done => {
+  it('should invoke the callback at most 50 times by default', done => {
     page.waitUntil(() => false, { delay: 1 })
       .catch(error => {
-        expect(error.message).toEqual('Invoked function () { return false; } every 1 millisecond(s) 3 time(s), but the callback never returned true')
+        expect(error.message).toEqual('Invoked function () { return false; } every 1 millisecond(s) 50 time(s), but the callback never returned true')
+      })
+      .then(done, error => done.fail(error.message))
+  })
+
+  it('should invoke the callback every 10 ms by default', done => {
+    page.waitUntil(() => false, { numberOfTries: 1 })
+      .catch(error => {
+        expect(error.message).toEqual('Invoked function () { return false; } every 10 millisecond(s) 1 time(s), but the callback never returned true')
       })
       .then(done, error => done.fail(error.message))
   })
