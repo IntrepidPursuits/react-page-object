@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import Page from 'react-page-object'
 
-fdescribe('waitUntilSpec', () => {
+describe('waitUntilSpec', () => {
   let page
   class TestComponent extends Component {
     constructor() {
