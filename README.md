@@ -1,5 +1,5 @@
 # React Page Object
-Declarative integration testing for React. With this library, you can now write the following integration tests:
+This library gives you the ability to write the following integration tests:
 
 ```jsx
 import React, { Component } from 'react'
@@ -37,25 +37,23 @@ describe('Counter component', () => {
     expect(page.content()).toMatch(/0/)
   })
 
-  it('add one to the count when the \'Add one\' button is clicked', () => {
+  it('adds one to the count when the \'Add one\' button is clicked', () => {
     page.clickButton('Add one')
     expect(page.content()).toMatch(/1/)
   })
 
-  it('add one to the count after a delay when the \'Add one async\' button is clicked', () => {
+  it('adds one to the count after a delay when the \'Add one async\' button is clicked', async () => {
     page.clickButton('Add one async')
-    expect(page.content()).toMatch(/0/)
-
-    return page
-      .waitUntil(() => !page.contentMatches(/0/))
-      .then(() => {
-        expect(page.content()).toMatch(/1/)
-      })
+    expect(page.content()).not.toMatch(/0/)
+    await page.waitUntil(() => page.contentMatches(/1/))
+    expect(page.content()).toMatch(/1/)
   })
 })
 ```
 
-This library can be used with any test runner or assertion library that is compatible with [`Enzyme`](https://github.com/airbnb/enzyme).
+This was test written in Jest. However, This library can be used with any test
+runner or assertion library that is compatible with
+[`Enzyme`](https://github.com/airbnb/enzyme).
 
 ## Installation
 
@@ -64,7 +62,7 @@ $ npm install --save-dev react-page-object
 ```
 
 `enzyme` is a peer dependency of `react-page-object`, so you will need to
-install if you have not done so already. Additionally, `react-dom` and
+install it if you have not done so already. Additionally, `react-dom` and
 `react-addons-test-utils` are peer dependencies of `enzyme`, so install those
 as well if you are missing them.
 
@@ -179,3 +177,6 @@ Optionally takes an `options` object as a second argument.
 Use `options.delay` to specify the number of milliseconds to wait for each interval before invoking `callback`.
 
 Use `options.numberOfTries` to specify the number of times that the `callback` can be invoked before the returned promise is rejected.
+
+## FAQs
+* [Do you have additional examples?](docs/faq/do-you-have-additional-examples.md)
