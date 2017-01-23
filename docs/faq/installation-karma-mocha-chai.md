@@ -18,17 +18,17 @@
 
   Press `y` to confirm that you want to eject.
 
-3. Install Chai and Mocha
+3. Install Karma, Karma related libraries, and Babel Polyfill
 
   ```
-  $ npm i -D chai@3.5.0 mocha@3.2.0
+  $ npm i -D karma@1.3.0 karma-sourcemap-loader@0.3.7 karma-webpack@2.0.1
+  $ npm i -D karma-phantomjs-launcher@1.0.2 babel-polyfill@6.22.0
   ```
 
-4. Install Karma and Karma related libraries
+4. Install Chai, Mocha, and their Karma adapters
 
   ```
-  $ npm i -D karma@1.3.0 karma-phantomjs-launcher@1.0.2 karma-sourcemap-loader@0.3.7 karma-webpack@2.0.1
-  $ npm i -D karma-chai@0.1.0 karma-mocha@1.3.0
+  $ npm i -D chai@3.5.0 mocha@3.2.0 karma-chai@0.1.0 karma-mocha@1.3.0
   ```
 
 5. Install `react-page-object`, `enzyme`, and `react-addons-test-utils`
@@ -155,8 +155,9 @@
 10. Add the following to your `test/testHelper.js` file.
 
   ```js
-  // use polyfills in PhantomJS
-  import '../config/polyfills'
+  // polyfill PhantomJS environment
+  import 'babel-polyfill'
+  import 'whatwg-fetch'
 
   // require all the test files in the test folder that end with Spec.js or Spec.jsx
   const testsContext = require.context(".", true, /Spec.jsx?$/);
