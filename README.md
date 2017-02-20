@@ -44,7 +44,7 @@ describe('Counter component', () => {
 
   it('adds one to the count after a delay when the \'Add one async\' button is clicked', async () => {
     page.clickButton('Add one async')
-    expect(page.content()).not.toMatch(/0/)
+    expect(page.content()).not.toMatch(/1/)
     await page.waitUntil(() => page.contentMatches(/1/))
     expect(page.content()).toMatch(/1/)
   })
