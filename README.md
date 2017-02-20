@@ -80,16 +80,11 @@ If you are new to testing in React, check out the following guides to get you up
 
 ## API
 ### Set Up Methods
-#### `constructor(reactElement[, options]) => Page`
-Navigates to the `/` path, mounts the given `reactElement` onto the DOM and returns a `Page` object.
+#### [`.constructor(reactElement[, options]) => Page`](docs/api/constructor.md)
+Create a `Page` object
 
-Optionally takes an `options` object as a second argument.
-
-Use `options.initialPath` to specify the initial path to navigate to before mounting the React element onto the DOM.
-
-#### `.destroy()`
-Unmounts the `reactElement` used to generate the `Page` object from the DOM. Navigates to `/`.
-This method should be invoked on a `Page` object at the end of every test.
+#### [`.destroy()`](docs/api/destroy.md)
+Destroy a `Page` object
 
 ### Find Wrapper Methods
 #### [`.findWrapperForCheck(propValue[, options]) => ReactWrapper`](docs/api/findWrapperForCheck.md)
@@ -148,35 +143,20 @@ Select an option from a select box
 Uncheck a checkbox
 
 ### Utility Methods
-#### `.content() => String`
-Returns a string containing all the text in the page.
+#### [`.content() => String`](docs/api/content.md)
+Returns the page text
 
-#### `.contentMatches(matcher) => Boolean`
-If `matcher` is a `String`, the method returns `true` if the string is a case
-sensitive match of the text in the page. Otherwise, it returns `false`.
+#### [`.contentMatches(matcher) => Boolean`](docs/api/contentMatches.md)
+Returns whether or not the page text matches the given matcher
 
-If `matcher` is a `RegExp`, the method returns `true` if the regular expression
-matches the text in the page. Otherwise, returns `false`.
+#### [`.currentPath() => String`](docs/api/currentPath.md)
+Returns the current URL path
 
-#### `.currentPath() => String`
-Returns the current path of the page.
+#### [`.outputOpenPageCode()`](docs/api/outputOpenPageCode.md)
+Output to the console a code snippet to view the page HTML
 
-#### `.outputOpenPageCode()`
-Outputs to the console a code snippet which should be pasted into a browser
-console. When that code snippet is pasted, a new tab will open with the HTML of
-the page at that point in the test.
-
-#### `.waitUntil(callback[, options]) => Promise`
-Returns a `Promise` which will be resolved when the `callback` returns `true`.
-By default, the `callback` will be invoked 3 times every 500 milliseconds. If
-the callback does not return `true` after the third invokation, then the
-promise will be rejected. This method is useful for writing asynchronous feature tests.
-
-Optionally takes an `options` object as a second argument.
-
-Use `options.delay` to specify the number of milliseconds to wait for each interval before invoking `callback`.
-
-Use `options.numberOfTries` to specify the number of times that the `callback` can be invoked before the returned promise is rejected.
+#### [`.waitUntil(callback[, options]) => Promise`](docs/api/waitUntil.md)
+Wait until a certain condition is met. Useful for testing asynchronicity
 
 ## FAQs
 * [Do you have additional examples?](docs/faq/do-you-have-additional-examples.md)
