@@ -6,7 +6,7 @@ describe('checkSpec', () => {
   const ChecksId = ({ onBlur, onChange, onFocus, secondOnChange }) => (
     <div>
       <input type="checkbox" id="propValue" onBlur={onBlur} onChange={onChange} onFocus={onFocus} />
-      <input type="checkbox" id="secondPropValue" value="customValue" onChange={secondOnChange} />
+      <input type="checkbox" id="secondPropValue" value="customValue" name="customName" onChange={secondOnChange} />
     </div>
   )
   const ChecksName = ({ onBlur, onChange, onFocus }) => (
@@ -49,7 +49,7 @@ describe('checkSpec', () => {
           page.check('propValue')
           expect(onChange).toHaveBeenCalled()
           const event = onChange.calls.first().args[0]
-          expect(event.target).toEqual({ checked: true, type: 'checkbox', value: 'on' })
+          expect(event.target).toEqual({ checked: true, type: 'checkbox', value: 'on', name: undefined })
         })
       })
 
@@ -58,7 +58,7 @@ describe('checkSpec', () => {
           page.check('secondPropValue')
           expect(secondOnChange).toHaveBeenCalled()
           const event = secondOnChange.calls.first().args[0]
-          expect(event.target).toEqual({ checked: true, type: 'checkbox', value: 'customValue' })
+          expect(event.target).toEqual({ checked: true, type: 'checkbox', value: 'customValue', name: 'customName' })
         })
       })
 
