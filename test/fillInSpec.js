@@ -66,7 +66,7 @@ describe('fillInSpec', () => {
         page.fillIn('propValue', 'eventTargetValue')
         expect(onChange).toHaveBeenCalled()
         const event = onChange.calls.first().args[0]
-        expect(event.target).toEqual({ value: 'eventTargetValue' })
+        expect(event.target).toEqual({ value: 'eventTargetValue', name: undefined })
       })
 
       it('should trigger onFocus event handler upon first interaction', () => {

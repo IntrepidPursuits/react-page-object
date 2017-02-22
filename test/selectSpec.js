@@ -54,7 +54,7 @@ describe('selectSpec', () => {
         page.select('propValue', 'childrenPropValueForOption')
         expect(onChange).toHaveBeenCalled()
         const event = onChange.calls.first().args[0]
-        expect(event.target).toEqual({ value: 'optionValue' })
+        expect(event.target).toEqual({ value: 'optionValue', name: undefined })
       })
 
       it('should trigger onFocus event handler upon first interaction', () => {
