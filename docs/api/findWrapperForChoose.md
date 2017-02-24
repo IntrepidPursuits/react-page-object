@@ -26,3 +26,57 @@ If `options.propToCheck` is specified, then the method returns a
 - [`.choose(propValue[, options]) => ReactWrapper`](choose.md)
 
 [react-wrapper]: https://github.com/airbnb/enzyme/blob/master/docs/api/mount.md#reactwrapper-api
+
+#### Example in Jest
+
+```js
+import React from 'react'
+import Page from 'react-page-object'
+
+const App = () => (
+  <div>
+    <input
+      id="input-id"
+      type="radio"
+    />
+    <input
+      name="input-name"
+      type="radio"
+    />
+    <input
+      className="input-class"
+      type="radio"
+    />
+  </div>
+)
+
+describe('findWrapperForChoose', () => {
+  let page, wrapper
+
+  beforeEach(() => {
+    page = new Page(<App />)
+  })
+
+  afterEach(() => {
+    page.destroy()
+  })
+
+  it('finds wrapper - targeting id', () => {
+    wrapper = page.findWrapperForChoose('input-id')
+    expect(wrapper.exists()).toBe(true)
+  })
+
+  it('finds wrapper - targeting name', () => {
+    wrapper = page.findWrapperForChoose('input-name')
+    expect(wrapper.exists()).toBe(true)
+  })
+
+  it('finds wrapper - targeting non-default prop', () => {
+    wrapper = page.findWrapperForChoose('input-class')
+    expect(wrapper.exists()).toBe(false)
+
+    wrapper = page.findWrapperForChoose('input-class', { propToCheck: 'className' })
+    expect(wrapper.exists()).toBe(true)
+  })
+})
+```

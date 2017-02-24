@@ -47,3 +47,63 @@ If no [`ReactWrapper`][react-wrapper] is found, then an error is thrown.
 
 [react-wrapper]: https://github.com/airbnb/enzyme/blob/master/docs/api/mount.md#reactwrapper-api
 [find-wrapper-method]: findWrapperForSelect.md
+
+#### Example in Jest
+
+```js
+import React, { Component } from 'react'
+import Page from 'react-page-object'
+
+class App extends Component {
+  state = { selectedOption: 'value 1' }
+
+  onChange = event => this.setState({ selectedOption: event.target.value })
+
+  render() {
+    return (
+      <div>
+        {this.state.selectedOption}
+        <select id="select-id" onChange={this.onChange}>
+          <option value="value 1">option 1</option>
+          <option value="value 2">option 2</option>
+        </select>
+        <select name="select-name" onChange={this.onChange}>
+          <option value="value 1">option 1</option>
+          <option value="value 2">option 2</option>
+        </select>
+        <select className="select-class" onChange={this.onChange}>
+          <option value="value 1">option 1</option>
+          <option value="value 2">option 2</option>
+        </select>
+      </div>
+    )
+  }
+}
+
+describe('select', () => {
+  let page, wrapper
+
+  beforeEach(() => {
+    page = new Page(<App />)
+  })
+
+  afterEach(() => {
+    page.destroy()
+  })
+
+  it('selects the option - targeting id', () => {
+    page.select('select-id', 'option 2')
+    expect(page.content()).toMatch(/value 2/)
+  })
+
+  it('selects the option - targeting name', () => {
+    page.select('select-name', 'option 2')
+    expect(page.content()).toMatch(/value 2/)
+  })
+
+  it('selects the option - targeting non-default prop', () => {
+    page.select('select-class', 'option 2', { propToCheck: 'className' })
+    expect(page.content()).toMatch(/value 2/)
+  })
+})
+```

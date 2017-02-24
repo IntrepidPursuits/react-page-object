@@ -40,3 +40,62 @@ If no [`ReactWrapper`][react-wrapper] is found, then an error is thrown.
 
 [react-wrapper]: https://github.com/airbnb/enzyme/blob/master/docs/api/mount.md#reactwrapper-api
 [find-wrapper-method]: findWrapperForClickLink.md
+
+#### Example in Jest
+
+```js
+import React, { Component } from 'react'
+import Page from 'react-page-object'
+import { BrowserRouter, Link } from 'react-router-dom'
+
+class App extends Component {
+  render() {
+    return (
+      <BrowserRouter>
+        <div>
+          <Link id="link-id" to="/first" />
+          <Link to="/second">link text</Link>
+          <Link to="/link-href" />
+          <Link className="link-class" to="/fourth" />
+        </div>
+      </BrowserRouter>
+    )
+  }
+}
+
+describe('clickLink', () => {
+  let page
+
+  beforeEach(() => {
+    page = new Page(<App />)
+  })
+
+  afterEach(() => {
+    page.destroy()
+  })
+
+  it('clicks the link - targeting id', () => {
+    expect(page.currentPath()).toMatch('/')
+    page.clickLink('link-id')
+    expect(page.currentPath()).toMatch('/first')
+  })
+
+  it('clicks the link - targeting children', () => {
+    expect(page.currentPath()).toMatch('/')
+    page.clickLink('link text')
+    expect(page.currentPath()).toMatch('/second')
+  })
+
+  it('clicks the link - targeting href', () => {
+    expect(page.currentPath()).toMatch('/')
+    page.clickLink('/link-href')
+    expect(page.currentPath()).toMatch('/link-href')
+  })
+
+  it('clicks the link - targeting non-default prop', () => {
+    expect(page.currentPath()).toMatch('/')
+    page.clickLink('link-class', { propToCheck: 'className' })
+    expect(page.currentPath()).toMatch('/fourth')
+  })
+})
+```

@@ -40,3 +40,82 @@ If no [`ReactWrapper`][react-wrapper] is found, then an error is thrown.
 
 [react-wrapper]: https://github.com/airbnb/enzyme/blob/master/docs/api/mount.md#reactwrapper-api
 [find-wrapper-method]: findWrapperForChoose.md
+
+#### Example in Jest
+
+```js
+import React, { Component } from 'react'
+import Page from 'react-page-object'
+
+class App extends Component {
+  state = { selectedOption: "1" }
+
+  onChange = event => this.setState({ selectedOption: event.target.value })
+
+  render() {
+    return (
+      <div>
+        {this.state.selectedOption}
+        <input
+          id="input-id-option-1"
+          type="radio"
+          value="1"
+          checked={this.state.selectedOption === "1"}
+          onChange={this.onChange}
+        />
+        <input
+          id="input-id-option-2"
+          type="radio"
+          value="2"
+          checked={this.state.selectedOption === "2"}
+          onChange={this.onChange}
+        />
+        <input
+          name="input-name-option-2"
+          type="radio"
+          value="2"
+          checked={this.state.selectedOption === "2"}
+          onChange={this.onChange}
+        />
+        <input
+          className="input-class-option-2"
+          type="radio"
+          value="2"
+          checked={this.state.selectedOption === "2"}
+          onChange={this.onChange}
+        />
+      </div>
+    )
+  }
+}
+
+describe('choose', () => {
+  let page
+
+  beforeEach(() => {
+    page = new Page(<App />)
+  })
+
+  afterEach(() => {
+    page.destroy()
+  })
+
+  it('chooses the radio button - targeting id', () => {
+    expect(page.content()).toMatch(/1/)
+    page.choose('input-id-option-2')
+    expect(page.content()).toMatch(/2/)
+  })
+
+  it('chooses the radio button - targeting name', () => {
+    expect(page.content()).toMatch(/1/)
+    page.choose('input-name-option-2')
+    expect(page.content()).toMatch(/2/)
+  })
+
+  it('chooses the radio button - targeting non-default prop', () => {
+    expect(page.content()).toMatch(/1/)
+    page.choose('input-class-option-2', { propToCheck: 'className' })
+    expect(page.content()).toMatch(/2/)
+  })
+})
+```

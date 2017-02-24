@@ -31,3 +31,57 @@ If `options.propToCheck` is specified, then the method returns a
 - [`.select(propValue[, options]) => ReactWrapper`](select.md)
 
 [react-wrapper]: https://github.com/airbnb/enzyme/blob/master/docs/api/mount.md#reactwrapper-api
+
+#### Example in Jest
+
+```js
+import React from 'react'
+import Page from 'react-page-object'
+
+const App = () => (
+  <div>
+    <select id="select-id">
+      <option>option 1</option>
+    </select>
+    <select name="select-name">
+      <option>option 1</option>
+    </select>
+    <select className="select-class">
+      <option>option 1</option>
+    </select>
+  </div>
+)
+
+describe('findWrapperForSelect', () => {
+  let page, wrapper
+
+  beforeEach(() => {
+    page = new Page(<App />)
+  })
+
+  afterEach(() => {
+    page.destroy()
+  })
+
+  it('finds wrapper - targeting id', () => {
+    wrapper = page.findWrapperForSelect('select-id', 'option that does not exist')
+    expect(wrapper.exists()).toBe(false)
+
+    wrapper = page.findWrapperForSelect('select-id', 'option 1')
+    expect(wrapper.exists()).toBe(true)
+  })
+
+  it('finds wrapper - targeting name', () => {
+    wrapper = page.findWrapperForSelect('select-name', 'option 1')
+    expect(wrapper.exists()).toBe(true)
+  })
+
+  it('fills in the select - targeting non-default prop', () => {
+    wrapper = page.findWrapperForSelect('select-class', 'option 1')
+    expect(wrapper.exists()).toBe(false)
+
+    wrapper = page.findWrapperForSelect('select-class', 'option 1', { propToCheck: 'className' })
+    expect(wrapper.exists()).toBe(true)
+  })
+})
+```

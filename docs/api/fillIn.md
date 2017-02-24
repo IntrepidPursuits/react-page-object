@@ -46,3 +46,60 @@ If no [`ReactWrapper`][react-wrapper] is found, then an error is thrown.
 
 [react-wrapper]: https://github.com/airbnb/enzyme/blob/master/docs/api/mount.md#reactwrapper-api
 [find-wrapper-method]: findWrapperForFillIn.md
+
+#### Example in Jest
+
+```js
+import React, { Component } from 'react'
+import Page from 'react-page-object'
+
+class App extends Component {
+  state = { text: '' }
+
+  onChange = event => this.setState({ text: event.target.value })
+
+  render() {
+    return (
+      <div>
+        {this.state.text}
+        <input id="input-id" onChange={this.onChange} />
+        <input name="input-name" onChange={this.onChange} />
+        <input placeholder="input-placeholder" onChange={this.onChange} />
+        <input className="input-class" onChange={this.onChange} />
+      </div>
+    )
+  }
+}
+
+describe('fillIn', () => {
+  let page
+
+  beforeEach(() => {
+    page = new Page(<App />)
+  })
+
+  afterEach(() => {
+    page.destroy()
+  })
+
+  it('fills in the input - targeting id', () => {
+    page.fillIn('input-id', 'hello')
+    expect(page.content()).toMatch(/hello/)
+  })
+
+  it('fills in the input - targeting name', () => {
+    page.fillIn('input-name', 'hello')
+    expect(page.content()).toMatch(/hello/)
+  })
+
+  it('fills in the input - targeting placeholder', () => {
+    page.fillIn('input-placeholder', 'hello')
+    expect(page.content()).toMatch(/hello/)
+  })
+
+  it('fills in the input - targeting non-default prop', () => {
+    page.fillIn('input-class', 'hello', { propToCheck: 'className' })
+    expect(page.content()).toMatch(/hello/)
+  })
+})
+```

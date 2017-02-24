@@ -27,3 +27,57 @@ If `options.propToCheck` is specified, then the method returns a
 - [`.uncheck(propValue[, options]) => ReactWrapper`](uncheck.md)
 
 [react-wrapper]: https://github.com/airbnb/enzyme/blob/master/docs/api/mount.md#reactwrapper-api
+
+#### Example in Jest
+
+```js
+import React from 'react'
+import Page from 'react-page-object'
+
+const App = () => (
+  <div>
+    <input
+      id="input-id"
+      type="checkbox"
+    />
+    <input
+      name="input-name"
+      type="checkbox"
+    />
+    <input
+      className="input-class"
+      type="checkbox"
+    />
+  </div>
+)
+
+describe('findWrapperForCheck', () => {
+  let page, wrapper
+
+  beforeEach(() => {
+    page = new Page(<App />)
+  })
+
+  afterEach(() => {
+    page.destroy()
+  })
+
+  it('finds wrapper - targeting id', () => {
+    wrapper = page.findWrapperForCheck('input-id')
+    expect(wrapper.exists()).toBe(true)
+  })
+
+  it('finds wrapper - targeting name', () => {
+    wrapper = page.findWrapperForCheck('input-name')
+    expect(wrapper.exists()).toBe(true)
+  })
+
+  it('finds wrapper - targeting non-default prop', () => {
+    wrapper = page.findWrapperForCheck('input-class')
+    expect(wrapper.exists()).toBe(false)
+
+    wrapper = page.findWrapperForCheck('input-class', { propToCheck: 'className' })
+    expect(wrapper.exists()).toBe(true)
+  })
+})
+```

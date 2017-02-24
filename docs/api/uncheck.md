@@ -41,3 +41,72 @@ If no [`ReactWrapper`][react-wrapper] is found, then an error is thrown.
 
 [react-wrapper]: https://github.com/airbnb/enzyme/blob/master/docs/api/mount.md#reactwrapper-api
 [find-wrapper-method]: findWrapperForCheck.md
+
+#### Example in Jest
+
+```js
+import React, { Component } from 'react'
+import Page from 'react-page-object'
+
+class App extends Component {
+  state = { checked: true }
+
+  onChange = event => this.setState({ checked: event.target.checked })
+
+  render() {
+    return (
+      <div>
+        {this.state.checked ? 'is checked' : 'is not checked'}
+        <input
+          id="input-id"
+          type="checkbox"
+          onChange={this.onChange}
+          checked={this.state.checked}
+        />
+        <input
+          name="input-name"
+          type="checkbox"
+          onChange={this.onChange}
+          checked={this.state.checked}
+        />
+        <input
+          className="input-class"
+          type="checkbox"
+          onChange={this.onChange}
+          checked={this.state.checked}
+        />
+      </div>
+    )
+  }
+}
+
+describe('uncheck', () => {
+  let page
+
+  beforeEach(() => {
+    page = new Page(<App />)
+  })
+
+  afterEach(() => {
+    page.destroy()
+  })
+
+  it('unchecks the input - targeting id', () => {
+    expect(page.content()).toMatch(/is checked/)
+    page.uncheck('input-id')
+    expect(page.content()).toMatch(/is not checked/)
+  })
+
+  it('unchecks the input - targeting name', () => {
+    expect(page.content()).toMatch(/is checked/)
+    page.uncheck('input-name')
+    expect(page.content()).toMatch(/is not checked/)
+  })
+
+  it('unchecks the input - targeting non-default prop', () => {
+    expect(page.content()).toMatch(/is checked/)
+    page.uncheck('input-class', { propToCheck: 'className' })
+    expect(page.content()).toMatch(/is not checked/)
+  })
+})
+```
