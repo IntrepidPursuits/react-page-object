@@ -26,3 +26,48 @@ If `options.propToCheck` is specified, then the method returns a
 - [`.clickInput(propValue[, options]) => ReactWrapper`](clickInput.md)
 
 [react-wrapper]: https://github.com/airbnb/enzyme/blob/master/docs/api/mount.md#reactwrapper-api
+
+#### Example in Jest
+
+```js
+import React from 'react'
+import Page from 'react-page-object'
+
+const App = () => (
+  <div>
+    <input id="input-id" type="submit" />
+    <input value="input text" type="submit" />
+    <input className="input-class" type="submit" />
+  </div>
+)
+
+describe('findWrapperForClickInput', () => {
+  let page, wrapper
+
+  beforeEach(() => {
+    page = new Page(<App />)
+  })
+
+  afterEach(() => {
+    page.destroy()
+  })
+
+  it('finds wrapper - targeting id', () => {
+    wrapper = page.findWrapperForClickInput('input-id')
+    expect(wrapper.exists()).toBe(true)
+  })
+
+  it('finds wrapper - targeting value', () => {
+    wrapper = page.findWrapperForClickInput('input text')
+    expect(wrapper.exists()).toBe(true)
+  })
+
+  it('finds wrapper - targeting non-default prop', () => {
+    wrapper = page.findWrapperForClickInput('input-class')
+    expect(wrapper.exists()).toBe(false)
+
+    wrapper = page.findWrapperForClickInput('input-class', { propToCheck: 'className' })
+    expect(wrapper.exists()).toBe(true)
+  })
+})
+```

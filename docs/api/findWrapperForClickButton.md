@@ -24,3 +24,48 @@ If `options.propToCheck` is specified, then the method returns a
 - [`.clickButton(propValue[, options]) => ReactWrapper`](clickButton.md)
 
 [react-wrapper]: https://github.com/airbnb/enzyme/blob/master/docs/api/mount.md#reactwrapper-api
+
+#### Example in Jest
+
+```js
+import React from 'react'
+import Page from 'react-page-object'
+
+const App = () => (
+  <div>
+    <button id="button-id" />
+    <button>button text</button>
+    <button className="button-class" />
+  </div>
+)
+
+describe('findWrapperForClickButton', () => {
+  let page, wrapper
+
+  beforeEach(() => {
+    page = new Page(<App />)
+  })
+
+  afterEach(() => {
+    page.destroy()
+  })
+
+  it('finds wrapper - targeting id', () => {
+    wrapper = page.findWrapperForClickButton('button-id')
+    expect(wrapper.exists()).toBe(true)
+  })
+
+  it('finds wrapper - targeting children', () => {
+    wrapper = page.findWrapperForClickButton('button text')
+    expect(wrapper.exists()).toBe(true)
+  })
+
+  it('finds wrapper - targeting non-default prop', () => {
+    wrapper = page.findWrapperForClickButton('button-class')
+    expect(wrapper.exists()).toBe(false)
+
+    wrapper = page.findWrapperForClickButton('button-class', { propToCheck: 'className' })
+    expect(wrapper.exists()).toBe(true)
+  })
+})
+```

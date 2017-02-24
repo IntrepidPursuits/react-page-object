@@ -18,7 +18,7 @@
 3. Install `react-page-object`, `enzyme`, and `react-addons-test-utils`
 
   ```
-  $ npm i -D react-page-object@1.0.8 enzyme@2.7.0 react-addons-test-utils@15.4.1
+  $ npm i -D react-page-object enzyme@2.7.0 react-addons-test-utils@15.4.1
   ```
 
 4. Modify the contents of `src/App.test.js` to be:

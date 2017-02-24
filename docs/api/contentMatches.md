@@ -17,3 +17,36 @@ return value of [`.content() => String`][content-method].
 
 [content-method]: content.md
 [reg-exp-constructor]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp
+
+### Example in Jest
+
+```js
+import React from 'react'
+import Page from 'react-page-object'
+
+const App = () => <h1>My App</h1>
+
+describe('contentMatches', () => {
+  let page
+
+  beforeEach(() => {
+    page = new Page(<App />)
+  })
+
+  afterEach(() => {
+    page.destroy()
+  })
+
+  it('returns true if content matches - RegExp given', () => {
+    expect(page.contentMatches(/My App/)).toBe(true)
+  })
+
+  it('returns true if content matches - string given', () => {
+    expect(page.contentMatches('My App')).toBe(true)
+  })
+
+  it('returns false if content does not match', () => {
+    expect(page.contentMatches(/should not match/)).toBe(false)
+  })
+})
+```

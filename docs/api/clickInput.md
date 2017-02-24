@@ -41,3 +41,57 @@ If no [`ReactWrapper`][react-wrapper] is found, then an error is thrown.
 
 [react-wrapper]: https://github.com/airbnb/enzyme/blob/master/docs/api/mount.md#reactwrapper-api
 [find-wrapper-method]: findWrapperForClickInput.md
+
+### Example in Jest
+
+```js
+import React, { Component } from 'react'
+import Page from 'react-page-object'
+
+class App extends Component {
+  state = { wasClicked: false }
+
+  onClick = event => this.setState({ wasClicked: true })
+
+  render() {
+    return (
+      <div>
+        {this.state.wasClicked ? 'was clicked' : 'was not clicked'}
+        <input id="input-id" type="submit" onClick={this.onClick} />
+        <input value="input text" type="submit" onClick={this.onClick} />
+        <input className="input-class" type="submit" onClick={this.onClick} />
+      </div>
+    )
+  }
+}
+
+describe('clickInput', () => {
+  let page
+
+  beforeEach(() => {
+    page = new Page(<App />)
+  })
+
+  afterEach(() => {
+    page.destroy()
+  })
+
+  it('clicks the input - targeting id', () => {
+    expect(page.content()).toMatch(/was not clicked/)
+    page.clickInput('input-id')
+    expect(page.content()).toMatch(/was clicked/)
+  })
+
+  it('clicks the input - targeting value', () => {
+    expect(page.content()).toMatch(/was not clicked/)
+    page.clickInput('input text')
+    expect(page.content()).toMatch(/was clicked/)
+  })
+
+  it('clicks the input - targeting non-default prop', () => {
+    expect(page.content()).toMatch(/was not clicked/)
+    page.clickInput('input-class', { propToCheck: 'className' })
+    expect(page.content()).toMatch(/was clicked/)
+  })
+})
+```

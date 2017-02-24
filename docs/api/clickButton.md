@@ -41,3 +41,57 @@ If no [`ReactWrapper`][react-wrapper] is found, then an error is thrown.
 
 [react-wrapper]: https://github.com/airbnb/enzyme/blob/master/docs/api/mount.md#reactwrapper-api
 [find-wrapper-method]: findWrapperForClickButton.md
+
+#### Example in Jest
+
+```js
+import React, { Component } from 'react'
+import Page from 'react-page-object'
+
+class App extends Component {
+  state = { wasClicked: false }
+
+  onClick = event => this.setState({ wasClicked: true })
+
+  render() {
+    return (
+      <div>
+        {this.state.wasClicked ? 'was clicked' : 'was not clicked'}
+        <button id="button-id" onClick={this.onClick} />
+        <button onClick={this.onClick}>button text</button>
+        <button className="button-class" onClick={this.onClick} />
+      </div>
+    )
+  }
+}
+
+describe('clickButton', () => {
+  let page
+
+  beforeEach(() => {
+    page = new Page(<App />)
+  })
+
+  afterEach(() => {
+    page.destroy()
+  })
+
+  it('clicks the button - targeting id', () => {
+    expect(page.content()).toMatch(/was not clicked/)
+    page.clickButton('button-id')
+    expect(page.content()).toMatch(/was clicked/)
+  })
+
+  it('clicks the button - targeting children', () => {
+    expect(page.content()).toMatch(/was not clicked/)
+    page.clickButton('button text')
+    expect(page.content()).toMatch(/was clicked/)
+  })
+
+  it('clicks the button - targeting non-default prop', () => {
+    expect(page.content()).toMatch(/was not clicked/)
+    page.clickButton('button-class', { propToCheck: 'className' })
+    expect(page.content()).toMatch(/was clicked/)
+  })
+})
+```

@@ -46,3 +46,60 @@ If no [`ReactWrapper`][react-wrapper] is found, then an error is thrown.
 
 [react-wrapper]: https://github.com/airbnb/enzyme/blob/master/docs/api/mount.md#reactwrapper-api
 [find-wrapper-method]: findWrapperForFillInTextarea.md
+
+#### Example in Jest
+
+```js
+import React, { Component } from 'react'
+import Page from 'react-page-object'
+
+class App extends Component {
+  state = { text: '' }
+
+  onChange = event => this.setState({ text: event.target.value })
+
+  render() {
+    return (
+      <div>
+        {this.state.text}
+        <textarea id="textarea-id" onChange={this.onChange} />
+        <textarea name="textarea-name" onChange={this.onChange} />
+        <textarea placeholder="textarea-placeholder" onChange={this.onChange} />
+        <textarea className="textarea-class" onChange={this.onChange} />
+      </div>
+    )
+  }
+}
+
+describe('fillInTextarea', () => {
+  let page
+
+  beforeEach(() => {
+    page = new Page(<App />)
+  })
+
+  afterEach(() => {
+    page.destroy()
+  })
+
+  it('fills in the textarea - targeting id', () => {
+    page.fillInTextarea('textarea-id', 'hello')
+    expect(page.content()).toMatch(/hello/)
+  })
+
+  it('fills in the textarea - targeting name', () => {
+    page.fillInTextarea('textarea-name', 'hello')
+    expect(page.content()).toMatch(/hello/)
+  })
+
+  it('fills in the textarea - targeting placeholder', () => {
+    page.fillInTextarea('textarea-placeholder', 'hello')
+    expect(page.content()).toMatch(/hello/)
+  })
+
+  it('fills in the textarea - targeting non-default prop', () => {
+    page.fillInTextarea('textarea-class', 'hello', { propToCheck: 'className' })
+    expect(page.content()).toMatch(/hello/)
+  })
+})
+```

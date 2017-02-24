@@ -24,3 +24,54 @@ If `options.propToCheck` is specified, then the method returns a
 - [`.fillInTextarea(propValue, eventTargetValue[, options]) => ReactWrapper`](fillInTextarea.md)
 
 [react-wrapper]: https://github.com/airbnb/enzyme/blob/master/docs/api/mount.md#reactwrapper-api
+
+#### Example in Jest
+
+```js
+import React from 'react'
+import Page from 'react-page-object'
+
+const App = () => (
+  <div>
+    <textarea id="textarea-id" />
+    <textarea name="textarea-name" />
+    <textarea placeholder="textarea-placeholder" />
+    <textarea className="textarea-class" />
+  </div>
+)
+
+describe('findWrapperForFillInTextarea', () => {
+  let page, wrapper
+
+  beforeEach(() => {
+    page = new Page(<App />)
+  })
+
+  afterEach(() => {
+    page.destroy()
+  })
+
+  it('finds wrapper - targeting id', () => {
+    wrapper = page.findWrapperForFillInTextarea('textarea-id', 'hello')
+    expect(wrapper.exists()).toBe(true)
+  })
+
+  it('finds wrapper - targeting name', () => {
+    wrapper = page.findWrapperForFillInTextarea('textarea-name', 'hello')
+    expect(wrapper.exists()).toBe(true)
+  })
+
+  it('finds wrapper - targeting placeholder', () => {
+    wrapper = page.findWrapperForFillInTextarea('textarea-placeholder', 'hello')
+    expect(wrapper.exists()).toBe(true)
+  })
+
+  it('finds wrapper - targeting non-default prop', () => {
+    wrapper = page.findWrapperForFillInTextarea('textarea-class')
+    expect(wrapper.exists()).toBe(false)
+
+    wrapper = page.findWrapperForFillInTextarea('textarea-class', { propToCheck: 'className' })
+    expect(wrapper.exists()).toBe(true)
+  })
+})
+```
