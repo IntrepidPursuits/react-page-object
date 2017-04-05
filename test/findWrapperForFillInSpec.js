@@ -29,6 +29,11 @@ describe('findWrapperForFillInSpec', () => {
       <input type="text" name="propValue" />
       <input type="text" placeholder="propValue" />
       <input type="text" />
+
+      <input type="tel" id="propValue" />
+      <input type="tel" name="propValue" />
+      <input type="tel" placeholder="propValue" />
+      <input type="tel" />
     </div>
   )
   const InputsCustom = () => (
@@ -60,6 +65,11 @@ describe('findWrapperForFillInSpec', () => {
       <input type="text" name="propValue" />
       <input type="text" placeholder="propValue" />
       <input type="text" />
+
+      <input type="tel" id="propValue" />
+      <input type="tel" name="propValue" />
+      <input type="tel" placeholder="propValue" />
+      <input type="tel" />
     </div>
   )
 
@@ -68,16 +78,16 @@ describe('findWrapperForFillInSpec', () => {
   })
 
   describe('no options given', () => {
-    it('should return ReactWrappers for inputs whose type prop value is undefined, \'email\', \'password\', or \'text\' and id, name, or place props match the propValue', () => {
+    it('should return ReactWrappers for inputs whose type prop value is undefined, \'email\', \'password\', \'text\' or \'tel\' and id, name, or place props match the propValue', () => {
       page = new Page(<InputsDefault />)
       const wrapper = page.findWrapperForFillIn('propValue')
-      expect(wrapper.length).toEqual(12)
+      expect(wrapper.length).toEqual(15)
       expect(wrapper.every('input')).toEqual(true)
     })
   })
 
   describe('propToCheck option is specified with className', () => {
-    it('should return a ReactWrapper for the input whose type prop value is undefined, \'email\', \'password\', or \'text\' and className prop matches the propValue', () => {
+    it('should return a ReactWrapper for the input whose type prop value is undefined, \'email\', \'password\', or \'text\', or \'tel\' and className prop matches the propValue', () => {
       page = new Page(<InputsCustom />)
       const wrapper = page.findWrapperForFillIn('propValue', { propToCheck: 'className' })
       expect(wrapper.html()).toEqual('<input class="propValue">')
