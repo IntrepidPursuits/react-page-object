@@ -69,12 +69,12 @@ as well if you are missing them.
 ```
 $ npm install --save-dev enzyme
 $ npm install --save-dev react-dom
-$ npm install --save-dev react-addons-test-utils
+$ npm install --save-dev react-test-renderer
 ```
 
 If you are new to testing in React, check out the following guides to get you up and running:
 
-* [Set up with Jest in Create React App](docs/faq/installation-jest.md)
+* [Set up with Jest in Create React App (Recommended)](docs/faq/installation-jest.md)
 * [Set up Karma with Mocha and Chai in Create React App](docs/faq/installation-karma-mocha-chai.md)
 * [Set up Karma with Jasmine in Create React App](docs/faq/installation-karma-jasmine.md)
 

@@ -3,7 +3,7 @@ import CleanPlugin from 'clean-webpack-plugin'
 export default {
   entry: {
     bundle: [
-      './lib/react-page-object/index.js',
+      './lib/index.js',
     ]
   },
   output: {
