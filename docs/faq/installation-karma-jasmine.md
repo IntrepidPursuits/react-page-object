@@ -5,7 +5,7 @@
 1. Install [Create React App](https://github.com/facebookincubator/create-react-app)
 
   ```
-  $ npm install -g create-react-app@1.0.3
+  $ npm install -g create-react-app@1.3.1
   ```
 
 2. Create a new React application and eject from it
@@ -31,10 +31,10 @@
   $ npm i -D jasmine-core@2.5.2 karma-jasmine@1.1.0
   ```
 
-5. Install `react-page-object`, `enzyme`, and `react-addons-test-utils`
+5. Install `react-page-object`, `enzyme`, and `react-test-renderer`
 
   ```
-  $ npm i -D react-page-object enzyme@2.7.0 react-addons-test-utils@15.4.1
+  $ npm i -D react-page-object enzyme@2.8.2 react-test-renderer@15.5.4
   ```
 
 6. Modify your `package.json` `scripts` to be

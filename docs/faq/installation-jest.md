@@ -5,7 +5,7 @@
 1. Install [Create React App](https://github.com/facebookincubator/create-react-app)
 
   ```
-  $ npm install -g create-react-app@1.0.3
+  $ npm install -g create-react-app@1.3.1
   ```
 
 2. Create a new React application
@@ -15,10 +15,10 @@
   $ cd my-app
   ```
 
-3. Install `react-page-object`, `enzyme`, and `react-addons-test-utils`
+3. Install `react-page-object`, `enzyme`, and `react-test-renderer`
 
   ```
-  $ npm i -D react-page-object enzyme@2.7.0 react-addons-test-utils@15.4.1
+  $ npm i -D react-page-object enzyme@2.8.2 react-test-renderer@15.5.4
   ```
 
 4. Modify the contents of `src/App.test.js` to be:
